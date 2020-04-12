@@ -22,12 +22,12 @@ int main(void)
 	int i=0;
 	int option;
 	int checkImput=0;
-	int operadorX;
-	int operadorY;
-	int resSuma;
-	int resResta;
+	float operadorX;
+	float operadorY;
+	float resSuma;
+	float resResta;
 	float resDiv;
-	int resMulti;
+	float resMulti;
 	double resFactor1;
 	double resFactor2;
 	int chkResDiv;
@@ -46,7 +46,7 @@ int main(void)
 			case 1:
 				{
 					system("CLS()");
-					if(utn_getNumero(&operadorX,"Ingrese el numero (X)\n","Error debe ser entre 0 y 9999\n", 0,9999,3))
+					if(utn_getNumeroConDecimales(&operadorX,"Ingrese el numero (X)\n","Error debe ser entre -9999 y 9999\n", -9999,9999,3))
 					{
 						if(checkImput==option||checkImput==0)
 						{
@@ -60,7 +60,7 @@ int main(void)
 			case 2:
 				{
 					system("CLS()");
-					if(utn_getNumero(&operadorY,"Ingrese el numero (Y)\n","Error debe ser entre 0 y 9999\n", 0,9999,3))
+					if(utn_getNumeroConDecimales(&operadorY,"Ingrese el numero (Y)\n","Error debe ser entre -9999 y 9999\n", -9999,9999,3))
 					{
 
 						if(checkImput==option||checkImput==0)
@@ -86,7 +86,8 @@ int main(void)
 				}
 			case 4:
 				{
-					imprimeResultados(operadorX, operadorY, checkImput, resSuma, resResta, resMulti, resDiv, chkResDiv, resFactor1, resFactor2, chkResFact);
+					if(imprimeResultados(operadorX, operadorY, checkImput, resSuma, resResta, resMulti, resDiv, chkResDiv, resFactor1, resFactor2, chkResFact)!=1)
+					{printf("Resta realizar los calculos para los numeros ingresados\n");}
 					break;
 				}
 			}

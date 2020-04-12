@@ -8,9 +8,9 @@
 #ifndef CALCULOS_H_
 #define CALCULOS_H_
 
-int getCalculos(int num1, int num2, int check, int* pResSuma, int* pResResta, int* pResMulti, float* pResDiv, int* chkDiv, double* pResFactA,double* pResFactB, int* chkFact);
-int imprimeResultados(int num1,int num2,int check, int resSuma, int resResta, int resMulti, float resDiv, int chkResDiv, double resFactor1, double resFactor2,int chkResFact);
-int menu(int ingresoA, int ingresoB, int check);
+int getCalculos(float num1, float num2, int check, float* pResSuma, float* pResResta, float* pResMulti, float* pResDiv, int* chkDiv, double* pResFactA,double* pResFactB, int* chkFact);
+int imprimeResultados(float num1,float num2,int check, float resSuma, float resResta, float resMulti, float resDiv, int chkResDiv, double resFactor1, double resFactor2,int chkResFact);
+int menu(float ingresoA, float ingresoB, int check);
 
 
 #endif /* CALCULOS_H_ */

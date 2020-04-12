@@ -18,7 +18,7 @@
  * check controla el ingreso al menu para determinar la opcion a mostrar
  *
  */
-int menu(int ingresoA, int ingresoB, int check)
+int menu(float ingresoA, float ingresoB, int check)
 {
 
 	//printf("control de vuelta %d\n", check); //sacar
@@ -32,19 +32,19 @@ switch(check)
 			}
 	case 1:
 			{
-				printf("1-Ingrese el primer operador(%d)\n2-Ingrese el segundo operador(Y)\n3-Calcular todas las operaciones\n4-Informar resultado\n5-Salir\n", ingresoA);
+				printf("1-Ingrese el primer operador(%.2f)\n2-Ingrese el segundo operador(Y)\n3-Calcular todas las operaciones\n4-Informar resultado\n5-Salir\n", ingresoA);
 				break;
 			}
 
 	case 2:
 			{
-				printf("1-Ingrese el primer operador(X)\n2-Ingrese el segundo operador(%d)\n3-Calcular todas las operaciones\n4-Informar resultado\n5-Salir\n", ingresoB);
+				printf("1-Ingrese el primer operador(X)\n2-Ingrese el segundo operador(%.2f)\n3-Calcular todas las operaciones\n4-Informar resultado\n5-Salir\n", ingresoB);
 				break;
 			}
 
 	default:
 			{
-				printf("1-Ingrese el primer operador(%d)\n2-Ingrese el segundo operador(%d)\n3-Calcular todas las operaciones\n4-Informar resultado\n5-Salir\n",ingresoA, ingresoB);
+				printf("1-Ingrese el primer operador(%.2f)\n2-Ingrese el segundo operador(%.2f)\n3-Calcular todas las operaciones\n4-Informar resultado\n5-Salir\n",ingresoA, ingresoB);
 				break;
 			}
 	}
@@ -62,18 +62,18 @@ return 1;
 
 
 
-static int getFactorial(double* factor1, double* factor2,int num1,int num2);
-static int getMulti(int* multi,int num1,int num2);
-static int getDiv(float* div,int num1,int num2);
-static int getResta(int* resta,int num1,int num2);
-static int getSuma(int* suma,int num1,int num2);
-int getCalculos(int num1, int num2, int check, int* pResSuma, int* pResResta, int* pResMulti, float* pResDiv, int* chkDiv, double* pResFactA,double* pResFactB, int* chkFact)
+static int getFactorial(double* factor1, double* factor2,float num1,float num2);
+static int getMulti(float* multi,float num1,float num2);
+static int getDiv(float* div,float num1,float num2);
+static int getResta(float* resta,float num1,float num2);
+static int getSuma(float* suma,float num1,float num2);
+int getCalculos(float num1, float num2, int check, float* pResSuma, float* pResResta, float* pResMulti, float* pResDiv, int* chkDiv, double* pResFactA,double* pResFactB, int* chkFact)
 {
 int ret=0;
-int suma;
-int resta;
+float suma;
+float resta;
 float div;
-int multi;
+float multi;
 double factor1;
 double factor2;
 
@@ -100,7 +100,7 @@ return ret;
  * Realiza la suma entre 2 numeros
  * Deveuelve por puntero el resultado
  */
-static int getSuma(int* suma,int num1,int num2)
+static int getSuma(float* suma,float num1,float num2)
 {
 	int ret=0;
 	if(suma!=NULL)
@@ -116,7 +116,7 @@ return ret;
  * Realiza la resta entre 2 numeros
  * Deveuelve por puntero el resultado
  */
-static int getResta(int* resta,int num1,int num2)
+static int getResta(float* resta,float num1,float num2)
 {
 	int ret=0;
 	if(resta!=NULL)
@@ -133,12 +133,12 @@ return ret;
  * Deveuelve por puntero el resultado
  * Retornara 1 en caso que se haya podido realizar la division
  */
-static int getDiv(float* div,int num1,int num2)
+static int getDiv(float* div,float num1,float num2)
 {
 	int ret=0;
 	if(div!=NULL && num2>0)
 	{
-		*div=(float)num1/num2;
+		*div=num1/num2;
 		ret=1;
 	}
 return ret;
@@ -148,7 +148,7 @@ return ret;
  * Realiza la multiplicacion entre 2 numeros
  * Deveuelve por puntero el resultado
  */
-static int getMulti(int* multi,int num1,int num2)
+static int getMulti(float* multi,float num1,float num2)
 {
 	int ret=0;
 	if(multi!=NULL)
@@ -164,13 +164,23 @@ return ret;
  * Recibe por puntero los resultados a entregar y los numeros sobre el cual va a realizar el factorial
  * Retornara 1 o 2 de acuerdo al numero que haya factoreado o 3 encaso de hacerlo con ambos.
  */
-static int getFactorial(double* factor1, double* factor2,int num1,int num2)
+static int getFactorial(double* factor1, double* factor2,float num1,float num2)
 {
 	int ret=0;
 	int i;
 	double resultF1=0;
 	double resultF2=0;
-	if(factor1!=NULL && num1>0)
+	float chkNum1;
+	float chkNum2;
+
+
+
+	chkNum1=(int)num1;
+	chkNum1=num1-chkNum1;
+	chkNum2=(int)num2;
+	chkNum2=num1-chkNum2;
+
+	if(factor1!=NULL && num1>0 && chkNum1<0 )
 	{
 		resultF1=1;
 
@@ -183,7 +193,7 @@ static int getFactorial(double* factor1, double* factor2,int num1,int num2)
 		ret=1;
 	}
 
-	if(factor2!=NULL && num2>0)
+	if(factor2!=NULL && num2>0  && chkNum2<0)
 	{
 		resultF2=1;
 
@@ -214,13 +224,13 @@ return ret;
  * Estos ultimos van a ser utiizados para evaluar el formato a presente el factorial
  */
 
-int imprimeResultados(int num1, int num2, int check, int resSuma, int resResta, int resMulti, float resDiv, int chkResDiv, double resFactor1, double resFactor2,int chkResFact)
+int imprimeResultados(float num1, float num2, int check, float resSuma, float resResta, float resMulti, float resDiv, int chkResDiv, double resFactor1, double resFactor2,int chkResFact)
 {
 	int ret=0;
 	if(check>=4)
 	{
-		printf("El resultado de la suma es: %d\n", resSuma);
-		printf("El resultado de la resta es: %d\n", resResta);
+		printf("El resultado de la suma es: %.2f\n", resSuma);
+		printf("El resultado de la resta es: %.2f\n", resResta);
 		if(chkResDiv>0)
 		{
 			printf("El resultado de la division es: %.2f\n", resDiv);
@@ -229,24 +239,22 @@ int imprimeResultados(int num1, int num2, int check, int resSuma, int resResta, 
 		{
 			printf("No es posible dividir por 0 (cero)\n");
 		}
-		printf("El resultado de la multiplicacion: %d\n", resMulti);
+		printf("El resultado de la multiplicacion: %.2f\n", resMulti);
 
-
-		printf("check factorial %d\n",chkResFact);
 		switch(chkResFact)
 				{
 					case 1:
 					{
 						if(num1>20)
 						{
-							printf("El factorial de (X) es: %E\n", resFactor1);
-							printf("No se pudo hacer el factorial de (Y) ya que su ingreso fue %d\n", num2);
+							printf("El factorial del entero de (X) es: %E\n", resFactor1);
+							printf("No se pudo hacer el factorial de (Y) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num2);
 
 						}
 						else
 						{
-							printf("El factorial de (X) es: %.0lf\n", resFactor1);
-							printf("No se pudo hacer el factorial de (Y) ya que su ingreso fue %d\n", num2);
+							printf("El factorial del entero de (X) es: %.0lf\n", resFactor1);
+							printf("No se pudo hacer el factorial de (Y) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num2);
 						}
 							break;
 					}
@@ -254,13 +262,13 @@ int imprimeResultados(int num1, int num2, int check, int resSuma, int resResta, 
 					{
 						if(num2>20)
 						{
-							printf("No se pudo hacer el factorial de (X) ya que su ingreso fue %d\n", num1);
-							printf("El factorial de (Y) es: %E\n", resFactor2);
+							printf("No se pudo hacer el factorial de (X) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num1);
+							printf("El factorial del entero de (Y) es: %E\n", resFactor2);
 						}
 						else
 						{
-							printf("No se pudo hacer el factorial de (X) ya que su ingreso fue %d\n", num1);
-							printf("El factorial de (Y) es: %.0lf\n", resFactor2);
+							printf("No se pudo hacer el factorial de (X) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num1);
+							printf("El factorial del entero de (Y) es: %.0lf\n", resFactor2);
 						}
 							break;
 					}
@@ -269,42 +277,39 @@ int imprimeResultados(int num1, int num2, int check, int resSuma, int resResta, 
 					{
 						if(num1>20 && num2>20)
 						{
-							printf("El factorial de (X) es: %E\n", resFactor1);
-							printf("El factorial de (Y) es: %E\n", resFactor2);
+							printf("El factorial del entero de (X) es: %E\n", resFactor1);
+							printf("El factorial del entero de (Y) es: %E\n", resFactor2);
 						}
 						else if (num1>20)
 						{
-							printf("El factorial de (X) es: %E\n", resFactor1);
-							printf("El factorial de (Y) es: %.0lf\n", resFactor2);
+							printf("El factorial del entero de (X) es: %E\n", resFactor1);
+							printf("El factorial del entero de (Y) es: %.0lf\n", resFactor2);
 
 						}
 						else if(num2>20)
 						{
-							printf("El factorial de (X) es: %.0lf\n", resFactor1);
-							printf("El factorial de (Y) es: %E\n", resFactor2);
+							printf("El factorial del entero de(X) es: %.0lf\n", resFactor1);
+							printf("El factorial del entero de (Y) es: %E\n", resFactor2);
 
 						}
 						else
 						{
-							printf("El factorial de (X) es: %.0lf\n", resFactor1);
-							printf("El factorial de (Y) es: %.0lf\n", resFactor2);
+							printf("El factorial del entero de (X) es: %.0lf\n", resFactor1);
+							printf("El factorial del entero de (Y) es: %.0lf\n", resFactor2);
 						}
 							break;
 					}
 					default :
 					{
-							printf("No se pudo hacer el factorial de (X) ya que su ingreso fue %d\n", num1);
-							printf("No se pudo hacer el factorial de (Y) ya que su ingreso fue %d\n", num2);
+							printf("No se pudo hacer el factorial de (X) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num1);
+							printf("No se pudo hacer el factorial de (Y) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num2);
 							break;
 					}
 
 				}
 		ret=1;
 	}
-	else
-	{
-		{printf("Resta realizar los calculos para los numeros ingresados\n");}
-	}
+
 return ret;
 }
 
