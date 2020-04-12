@@ -178,9 +178,9 @@ static int getFactorial(double* factor1, double* factor2,float num1,float num2)
 	chkNum1=(int)num1;
 	chkNum1=num1-chkNum1;
 	chkNum2=(int)num2;
-	chkNum2=num1-chkNum2;
+	chkNum2=num2-chkNum2;
 
-	if(factor1!=NULL && num1>0 && chkNum1<0 )
+	if(factor1!=NULL && num1>0 && chkNum1<=0 )
 	{
 		resultF1=1;
 
@@ -193,7 +193,7 @@ static int getFactorial(double* factor1, double* factor2,float num1,float num2)
 		ret=1;
 	}
 
-	if(factor2!=NULL && num2>0  && chkNum2<0)
+	if(factor2!=NULL && num2>0  && chkNum2<=0)
 	{
 		resultF2=1;
 
