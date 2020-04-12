@@ -21,7 +21,6 @@
 int menu(float ingresoA, float ingresoB, int check)
 {
 
-	//printf("control de vuelta %d\n", check); //sacar
 
 switch(check)
 	{
@@ -98,7 +97,7 @@ return ret;
 
 /**
  * Realiza la suma entre 2 numeros
- * Deveuelve por puntero el resultado
+ * Deveuelve por puntero el resultado de la suma
  */
 static int getSuma(float* suma,float num1,float num2)
 {
@@ -114,7 +113,7 @@ return ret;
 
 /**
  * Realiza la resta entre 2 numeros
- * Deveuelve por puntero el resultado
+ * Deveuelve por puntero el resultado de la resta
  */
 static int getResta(float* resta,float num1,float num2)
 {
@@ -130,13 +129,13 @@ return ret;
 
 /**
  * Realiza la division entre 2 numeros
- * Deveuelve por puntero el resultado
- * Retornara 1 en caso que se haya podido realizar la division
+ * Deveuelve por puntero el resultado de la division
+ * Retornara 1 en caso que se haya podido realizar la division, 0 si el divisor es igual a cero
  */
 static int getDiv(float* div,float num1,float num2)
 {
 	int ret=0;
-	if(div!=NULL && num2>0)
+	if(div!=NULL && num2!=0)
 	{
 		*div=num1/num2;
 		ret=1;
@@ -146,7 +145,7 @@ return ret;
 
 /**
  * Realiza la multiplicacion entre 2 numeros
- * Deveuelve por puntero el resultado
+ * Deveuelve por puntero el resultado de la multiplicacion
  */
 static int getMulti(float* multi,float num1,float num2)
 {
@@ -161,8 +160,8 @@ return ret;
 
 /**
  * Realiza el factorial de 2 numeros
- * Recibe por puntero los resultados a entregar y los numeros sobre el cual va a realizar el factorial
- * Retornara 1 o 2 de acuerdo al numero que haya factoreado o 3 encaso de hacerlo con ambos.
+ * Devuleve por puntero los resultados de la operacion
+ * Retornara 1 o 2 de acuerdo al numero que haya podido factoreado o 3 encaso de hacerlo con ambos.
  */
 static int getFactorial(double* factor1, double* factor2,float num1,float num2)
 {
@@ -221,9 +220,10 @@ return ret;
 /**
  * Imprime los resultados de cada operacion
  * Recibe tanto los resultados, las respuestas obtenidas por cada funcion de claculo asi los numeros ingresados
+ * que permite tomar decisiones al momento de impirmi.
  * Estos ultimos van a ser utiizados para evaluar el formato a presente el factorial
  */
-
+static int validaFctorial (char* mensaje, int ingreso, double resultado);
 int imprimeResultados(float num1, float num2, int check, float resSuma, float resResta, float resMulti, float resDiv, int chkResDiv, double resFactor1, double resFactor2,int chkResFact)
 {
 	int ret=0;
@@ -245,65 +245,28 @@ int imprimeResultados(float num1, float num2, int check, float resSuma, float re
 				{
 					case 1:
 					{
-						if(num1>20)
-						{
-							printf("El factorial del entero de (X) es: %E\n", resFactor1);
-							printf("No se pudo hacer el factorial de (Y) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num2);
-
-						}
-						else
-						{
-							printf("El factorial del entero de (X) es: %.0lf\n", resFactor1);
-							printf("No se pudo hacer el factorial de (Y) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num2);
-						}
-							break;
+						validaFctorial ("El factorial del entero de (X) es:", num1, resFactor1 );
+						printf("No se pudo hacer el factorial de (Y) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num2);
+						break;
 					}
 					case 2:
 					{
-						if(num2>20)
-						{
-							printf("No se pudo hacer el factorial de (X) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num1);
-							printf("El factorial del entero de (Y) es: %E\n", resFactor2);
-						}
-						else
-						{
-							printf("No se pudo hacer el factorial de (X) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num1);
-							printf("El factorial del entero de (Y) es: %.0lf\n", resFactor2);
-						}
-							break;
+						printf("No se pudo hacer el factorial de (X) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num1);
+						validaFctorial ("El factorial del entero de (Y) es:", num2, resFactor2 );
+						break;
 					}
 
 					case 3:
 					{
-						if(num1>20 && num2>20)
-						{
-							printf("El factorial del entero de (X) es: %E\n", resFactor1);
-							printf("El factorial del entero de (Y) es: %E\n", resFactor2);
-						}
-						else if (num1>20)
-						{
-							printf("El factorial del entero de (X) es: %E\n", resFactor1);
-							printf("El factorial del entero de (Y) es: %.0lf\n", resFactor2);
-
-						}
-						else if(num2>20)
-						{
-							printf("El factorial del entero de(X) es: %.0lf\n", resFactor1);
-							printf("El factorial del entero de (Y) es: %E\n", resFactor2);
-
-						}
-						else
-						{
-							printf("El factorial del entero de (X) es: %.0lf\n", resFactor1);
-							printf("El factorial del entero de (Y) es: %.0lf\n", resFactor2);
-						}
-							break;
+						validaFctorial ("El factorial del entero de (X) es:", num1, resFactor1 );
+						validaFctorial ("El factorial del entero de (Y) es:", num2, resFactor2 );
+						break;
 					}
 					default :
 					{
-							printf("No se pudo hacer el factorial de (X) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num1);
-							printf("No se pudo hacer el factorial de (Y) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num2);
-							break;
+						printf("No se pudo hacer el factorial de (X) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num1);
+						printf("No se pudo hacer el factorial de (Y) ya que su ingreso fue %.2f, debe ser entero y mayor a 0 (cero)\n", num2);
+						break;
 					}
 
 				}
@@ -311,5 +274,33 @@ int imprimeResultados(float num1, float num2, int check, float resSuma, float re
 	}
 
 return ret;
+}
+
+/**
+ * Funcion utilizada para determinar el formato a impirmir el resultado del factorial
+ * Recibe el mensaje y resultado a mostrar y valida de acuerdo al numero ingresado inicialmente.
+ *
+ */
+static int validaFctorial (char* mensaje, int ingreso, double resultado)
+{
+	int ret=0;
+	if (ingreso>0)
+	{
+
+		if(ingreso>20)
+		{
+			printf("%s %E\n",mensaje, resultado);
+
+		}
+		else
+		{
+			printf("%s %.0lf\n",mensaje, resultado);
+		}
+
+
+		ret=1;
+	}
+
+	return ret;
 }
 

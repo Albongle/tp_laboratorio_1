@@ -1,8 +1,8 @@
 /*
  ============================================================================
- Name        : TP1.c
+ Programa    : TP1.c
  Author      : Alejandro Bongioanni
- Version     :
+ Objetivo    : Hacer una calculadora
  Copyright   : Your copyright notice
  Description : TP1 Calculadora
  ============================================================================

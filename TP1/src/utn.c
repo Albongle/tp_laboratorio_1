@@ -7,6 +7,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+/**
+ * Funcion para el ingreso de numeros enteros
+ * solicita un numero al usuario y devuelve este por puntero en caso que se haya podido comprobar
+ * que no posee caracteres adicionales y no sea vacia
+ * Retorna 1 en caso exitoso
+ */
 
 
 static int getInt(int* pResultado);
@@ -98,7 +104,14 @@ static int esNumerica(char* cadena)
 }
 
 
-//inicio numero con decimales
+//inicio numero con decimales, positivo o negativo
+
+/**
+ * Funcion para el ingreso de numeros con decimales, positivos o negativos
+ * solicita un numero al usuario y devuelve este por puntero en caso que se haya podido comprobar
+ * que la misma no sea vacia, no tenga mas de un '.' y el signo negativo solo se encuentre en la 1er posisicion
+ * Retorna 1 en caso exitoso
+ */
 
 static int getFloat(float* pResultado);
 static int esNumeroDecimal(char* cadena);
