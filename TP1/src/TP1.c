@@ -38,7 +38,7 @@ int main(void)
 	setbuf(stdout, NULL);
 	do
 	{
-		if(menu(operadorX, operadorY, checkImput) && utn_getNumero(&option,"Elija una opcion\n","Error debe ser entre 1 y 5\n",1,5,3))
+		if(menu(operadorX, operadorY, checkImput) && utn_getNumero(&option,"Elija una opcion\n","Error debe ser entre 1 y 5, quedan %d reintentos\n",1,5,3))
 		{
 
 			switch(option)
@@ -46,7 +46,7 @@ int main(void)
 			case 1:
 				{
 					system("CLS()");
-					if(utn_getNumeroConDecimales(&operadorX,"Ingrese el numero (X)\n","Error debe ser entre -9999 y 9999\n", -9999,9999,3))
+					if(utn_getNumeroConDecimales(&operadorX,"Ingrese el numero (X)\n","Error debe ser entre -9999 y 9999, quedan %d reintentos\n", -9999,9999,3))
 					{
 						if(checkImput==option||checkImput==0)
 						{
@@ -60,7 +60,7 @@ int main(void)
 			case 2:
 				{
 					system("CLS()");
-					if(utn_getNumeroConDecimales(&operadorY,"Ingrese el numero (Y)\n","Error debe ser entre -9999 y 9999\n", -9999,9999,3))
+					if(utn_getNumeroConDecimales(&operadorY,"Ingrese el numero (Y)\n","Error debe ser entre -9999 y 9999, quedan %d reintentos\n", -9999,9999,3))
 					{
 
 						if(checkImput==option||checkImput==0)

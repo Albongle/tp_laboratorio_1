@@ -32,13 +32,13 @@ int utn_getNumero(int* numero, char* mensaje, char* mensajeError, int minimo, in
 				if(ingreso<minimo || ingreso>maximo)
 				{
 					fflush(stdin);
-					printf(mensajeError);
+					printf(mensajeError, reintentos);
 					reintentos--;
 				}
 			}
 			else
 			{
-				printf("Error, el numero ingresado no es entero\n");
+				printf(mensajeError,reintentos);
 				reintentos--;
 			}
 
@@ -54,7 +54,7 @@ int utn_getNumero(int* numero, char* mensaje, char* mensajeError, int minimo, in
 	}
 	else
 	{
-		printf(mensajeError);
+		printf(mensajeError, reintentos);
 	}
 
 	return ret;
@@ -131,13 +131,13 @@ int utn_getNumeroConDecimales(float* numero, char* mensaje, char* mensajeError, 
 					if(ingreso<minimo || ingreso>maximo)
 					{
 						fflush(stdin);
-						printf(mensajeError);
+						printf(mensajeError, reintentos);
 						reintentos--;
 					}
 				}
 				else
 				{
-					printf("Error, los datos ingresados no son correctos\n");
+					printf(mensajeError,reintentos);
 					reintentos--;
 				}
 
@@ -153,7 +153,7 @@ int utn_getNumeroConDecimales(float* numero, char* mensaje, char* mensajeError, 
 		}
 		else
 		{
-			printf(mensajeError);
+			printf(mensajeError, reintentos);
 		}
 
 		return ret;
