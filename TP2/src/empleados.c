@@ -453,7 +453,7 @@ return ret;
 
 
 
-int ordenaEmpleados(eEmpleados* pArrayEmpleados,int tamArrayEmpleados,eSector* pArraySectores, int tamArraySectores, char sentido)
+int ordenaEmpleados(eEmpleados* pArrayEmpleados,int tamArrayEmpleados,eSector* pArraySectores, int tamArraySectores, int sentido)
 {
 	int flagSwap=1;
 	int i;
@@ -463,7 +463,7 @@ int ordenaEmpleados(eEmpleados* pArrayEmpleados,int tamArrayEmpleados,eSector* p
 
 
 
-	if(pArrayEmpleados != NULL && tamArrayEmpleados > 0 && pArraySectores!=NULL && tamArraySectores>0 && sentido!=' ')
+	if(pArrayEmpleados != NULL && tamArrayEmpleados > 0 && pArraySectores!=NULL && tamArraySectores>0 && (sentido==0 || sentido ==1))
 			{
 				while(flagSwap)
 				{
@@ -473,7 +473,7 @@ int ordenaEmpleados(eEmpleados* pArrayEmpleados,int tamArrayEmpleados,eSector* p
 					{
 						switch (sentido)
 						{
-						case '>':
+						case 0:
 							{
 							if((stricmp(pArrayEmpleados[i].apellido,pArrayEmpleados[i+1].apellido))<0 && pArrayEmpleados[i].isEmpty==0 && pArrayEmpleados[i+1].isEmpty==0)
 								{
@@ -493,7 +493,7 @@ int ordenaEmpleados(eEmpleados* pArrayEmpleados,int tamArrayEmpleados,eSector* p
 							}
 							break;
 							}
-						case '<':
+						case 1:
 							{
 							if((stricmp(pArrayEmpleados[i].apellido,pArrayEmpleados[i+1].apellido))>0 && pArrayEmpleados[i].isEmpty==0 && pArrayEmpleados[i+1].isEmpty==0)
 								{

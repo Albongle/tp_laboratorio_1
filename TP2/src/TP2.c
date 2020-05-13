@@ -102,7 +102,7 @@ do
 						case 1:
 								{
 									system("CLS()");
-									empleadosOrdenados(empleados,Q_EMPLEADOS,sectores,Q_SECTOR,'>');// ordenador
+									empleadosOrdenados(empleados,Q_EMPLEADOS,sectores,Q_SECTOR,0);// ordenador
 									system("PAUSE()");
 									break;
 								}

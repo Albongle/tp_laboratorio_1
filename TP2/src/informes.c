@@ -13,11 +13,11 @@
 static double totalSalario(eEmpleados* pArrayEmpleados,int tamArrayEmpleados, int* qEmpleados);
 static int qEmpleadoSuperanProm(eEmpleados* pArrayEmpleados,int tamArrayEmpleados, float promSalario);
 
-void empleadosOrdenados(eEmpleados* pArrayEmpleados,int tamArrayEmpleados,eSector* pArraySectores, int tamArraySectores, char sentido)
+void empleadosOrdenados(eEmpleados* pArrayEmpleados,int tamArrayEmpleados,eSector* pArraySectores, int tamArraySectores, int sentido)
 {
-if(pArrayEmpleados!=NULL && tamArrayEmpleados>0 && pArraySectores!=NULL && tamArraySectores>0 && sentido!=' ')
+if(pArrayEmpleados!=NULL && tamArrayEmpleados>0 && pArraySectores!=NULL && tamArraySectores>0 && (sentido==0 || sentido ==1))
 {
-	ordenaEmpleados(pArrayEmpleados,tamArrayEmpleados,pArraySectores,tamArraySectores,'>');
+	ordenaEmpleados(pArrayEmpleados,tamArrayEmpleados,pArraySectores,tamArraySectores,sentido);
 	imprimeEmpleados(pArrayEmpleados,tamArrayEmpleados,pArraySectores,tamArraySectores);
 }
 }

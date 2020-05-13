@@ -62,10 +62,10 @@ int modificarEmpleados(eEmpleados* pArrayEmpleados, int tamArrayEmpleados, int i
  * param tamArrayEmpleados es el tamaño del array de empleados
  * param pArraysectores es el array de sectores
  * param tamArraysectores es el tamaño del array de sectores a los cuales puede pertencer el empleado
- * param sentido es el sentido para realizar el ordenamiento, debe asignarse '<' (descendente) o '>'(ascendente)
+ * param sentido es el sentido para realizar el ordenamiento, debe asignarse '0' (descendente) o '1'(ascendente)
  * return 1 en caso exitoso o 0 en caso contrario
  */
-int ordenaEmpleados(eEmpleados* pArrayEmpleados,int tamArrayEmpleados,eSector* pArraySectores, int tamArraySectores, char sentido);
+int ordenaEmpleados(eEmpleados* pArrayEmpleados,int tamArrayEmpleados,eSector* pArraySectores, int tamArraySectores, int sentido);
 /**
  * brief imprime empleados
  * param pArrayEmpleados es el array de empleados
