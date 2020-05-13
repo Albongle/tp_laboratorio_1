@@ -233,7 +233,7 @@ static void imprimeEmpleado(eEmpleados pArrayEmpleados,eSector* pArraySectores,i
 
 int modificarEmpleados(eEmpleados* pArrayEmpleados, int tamArrayEmpleados, int id, eSector* pArraySectores, int tamArraySectores)
 {
-	int indice;
+	int indice=-1;
 	int valorBuscado;
 	char respuesta;
 	eEmpleados auxEmpleado;
@@ -247,9 +247,13 @@ int modificarEmpleados(eEmpleados* pArrayEmpleados, int tamArrayEmpleados, int i
 
 		imprimeEmpleados(pArrayEmpleados,tamArrayEmpleados,pArraySectores,tamArraySectores);
 		printf("\n\n\n");
-		utn_getNumero(&valorBuscado,"Ingrese el ID del Empleado que desea modificar \n","Error verifique los datos ingresados quedan %d intentos\n",0,1000,3);
 
-		indice=buscarEmpleadoPorId(pArrayEmpleados,tamArrayEmpleados,valorBuscado);
+		if(utn_getNumero(&valorBuscado,"Ingrese el ID del Empleado que desea modificar \n","Error verifique los datos ingresados quedan %d intentos\n",0,1000,3))
+		{
+			indice=buscarEmpleadoPorId(pArrayEmpleados,tamArrayEmpleados,valorBuscado);
+		}
+
+
 		if(indice==-1)
 		{
 			printf("No se encontro el empleado para el ID ingresado\n");
@@ -403,7 +407,7 @@ return opcion;
 
 int bajaEmpleado(eEmpleados* pArrayEmpleados, int tamArrayEmpleados, eSector* pArraySectores, int tamArraySectores)
 {
-	int indice;
+	int indice=-1;
 	int valorBuscado;
 	char respuesta;
 	int ret=0;
@@ -414,9 +418,13 @@ int bajaEmpleado(eEmpleados* pArrayEmpleados, int tamArrayEmpleados, eSector* pA
 	{
 		imprimeEmpleados(pArrayEmpleados,tamArrayEmpleados,pArraySectores,tamArraySectores);
 		printf("\n\n\n");
-		utn_getNumero(&valorBuscado,"Ingrese el Id del empleaado a dar de baja \n","Error verifique los datos ingresados quedan %d intentos\n",0,1000,3);
 
-		indice=buscarEmpleadoPorId(pArrayEmpleados,tamArrayEmpleados,valorBuscado);
+		if(utn_getNumero(&valorBuscado,"Ingrese el Id del empleaado a dar de baja \n","Error verifique los datos ingresados quedan %d intentos\n",0,1000,3))
+		{
+			indice=buscarEmpleadoPorId(pArrayEmpleados,tamArrayEmpleados,valorBuscado);
+		}
+
+
 		if(indice==-1)
 		{
 			printf("No se encontro el alumno para el legajo ingresado\n");
