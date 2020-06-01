@@ -37,6 +37,54 @@ int main()
             	break;
 
             }
+            case 2:
+            {
+
+            	break;
+            }
+            case 3:
+            {
+            	controller_addEmployee(listaEmpleados);
+            	break;
+            }
+            case 4:
+            {
+
+            	break;
+            }
+            case 5:
+            {
+
+
+            	break;
+            }
+            case 6:
+            {
+
+            	break;
+            }
+            case 7:
+            {
+
+            	break;
+            }
+            case 8:
+            {
+
+            	break;
+            }
+            case 9:
+            {
+
+            	break;
+            }
+
+            case 10:
+            {
+
+
+            	break;
+            }
 
 
             default:
@@ -77,4 +125,6 @@ int menu()
 
 return option;
 }
+
+
 
