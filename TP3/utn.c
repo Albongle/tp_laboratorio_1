@@ -302,8 +302,9 @@ if (pCaracter!=NULL && pMensaje!=NULL && pMensajeError!=NULL && pRango!=NULL && 
 	do
 	{
 
-		fflush(stdin);
+
 		printf(pMensaje);
+		fflush(stdin);
 		fgets(bufferIng,sizeof(bufferIng),stdin);
 		bufferIng[strlen(bufferIng)-1]='\0';
 

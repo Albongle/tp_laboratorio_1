@@ -20,14 +20,14 @@
 #define __LINKEDLIST
 struct Node
 {
-    void* pElement;
-    struct Node* pNextNode;
+    void* pElement;                 //puntero al elemento (persona, empleado, etc.)
+    struct Node* pNextNode;         //puntero al prox nodo
 }typedef Node;
 
 struct LinkedList
 {
     Node* pFirstNode;
-    int size;
+    int size;                       //cada vez que agrego o elimino un elemento size++/--
 }typedef LinkedList;
 #endif
 
@@ -35,7 +35,7 @@ struct LinkedList
 
 //Publicas
 LinkedList* ll_newLinkedList(void);
-int ll_len(LinkedList* this);
+int ll_len(LinkedList* this);                                       //devuelve el valor del campo int size
 Node* test_getNode(LinkedList* this, int nodeIndex);
 int test_addNode(LinkedList* this, int nodeIndex,void* pElement);
 int ll_add(LinkedList* this, void* pElement);
@@ -47,17 +47,9 @@ int ll_deleteLinkedList(LinkedList* this);
 int ll_indexOf(LinkedList* this, void* pElement);
 int ll_isEmpty(LinkedList* this);
 int ll_push(LinkedList* this, int index, void* pElement);
-void* ll_pop(LinkedList* this,int index);
+void* ll_pop(LinkedList* this,int index);                           //elimina un elemento (los enlaces a ese elemento) y devuelve un puntero a ese elemento
 int ll_contains(LinkedList* this, void* pElement);
 int ll_containsAll(LinkedList* this,LinkedList* this2);
 LinkedList* ll_subList(LinkedList* this,int from,int to);
 LinkedList* ll_clone(LinkedList* this);
-
-/** \brief Ordena los elementos de la lista utilizando la funcion criterio recibida como parametro
- * \param pList LinkedList* Puntero a la lista
- * \param pFunc (*pFunc) Puntero a la funcion criterio
- * \param order int  [1] Indica orden ascendente - [0] Indica orden descendente
- * \return int Retorna  (-1) Error: si el puntero a la listas es NULL
-                                ( 0) Si ok
-*/
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order);
