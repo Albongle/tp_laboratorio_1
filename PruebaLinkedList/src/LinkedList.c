@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../inc/LinkedList.h"
-
+#include "LinkedList.h"
 
 static Node* getNode(LinkedList* this, int nodeIndex);
 static int addNode(LinkedList* this, int nodeIndex,void* pElement);
@@ -231,20 +230,22 @@ int ll_remove(LinkedList* this,int index)
     Node* pNodeAux;
     if(this!=NULL && index>=0 && index<ll_len(this))
     {
-    	pNodeAux=getNode(this,index);
-    	if(index==0)
+    	if((pNodeAux=getNode(this,index))!=NULL)
     	{
-    		this->pFirstNode=pNodeAux->pNextNode;
+        	if(index==0)
+        	{
+        		this->pFirstNode=pNodeAux->pNextNode;
+        	}
+        	else
+        	{
+        		pNodeAuxPrev = getNode(this,index-1);
+        		pNodeAuxPrev->pNextNode=pNodeAux->pNextNode;
+        	}
+        	free(pNodeAux);
+       		this->size--;
+        	returnAux = 0;
+    	}
 
-    	}
-    	else
-    	{
-    		pNodeAuxPrev = getNode(this,index-1);
-    		pNodeAuxPrev->pNextNode=pNodeAux->pNextNode;
-    	}
-    	free(pNodeAux);
-   		this->size--;
-    	returnAux = 0;
     }
     return returnAux;
 }
